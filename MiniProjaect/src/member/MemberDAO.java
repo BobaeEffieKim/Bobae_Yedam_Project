@@ -1,6 +1,9 @@
 package member;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 
 import common.DAO;
 
@@ -109,11 +112,137 @@ public class MemberDAO extends DAO{
 	
 	
 	//삭제 - 회원 탈퇴 시 
+	public void delete(int memberId) {
+		
+		try {
+			connect();
+			
+			String sql = "DELETE FROM members WHERE member_id = " +memberId;
+			
+			stmt = conn.createStatement();
+			
+			int result = stmt.executeUpdate(sql);
+			
+			if(result > 0) {
+				System.out.println("정상적으로 삭제되었습니다.");
+			} else {
+				System.out.println("정상적으로 삭제되지 않았습니다.");
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+	}
+	
 	
 	//로그인
+	public Member logIn(Member member) {
+		Member loginInfo = null;
+		
+		try {
+			connect();
+			
+			String sql = "SELECT* FROM members WHERE member_id = '"+ member.getMemberId()+ "'";
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+			
+			if(rs.next()) {
+				
+				if(rs.getString("member_pwd").equals(member.getMemberPwd())) {
+					
+					loginInfo = new Member();
+					loginInfo.setMemberId(rs.getString("member_id"));
+					loginInfo.setMemberPwd(rs.getString("member_pwd"));
+					loginInfo.setMemberRole(rs.getInt("member_role"));
+					
+				} else {
+					System.out.println("비밀번호가 일치하지 않습니다.");
+				}
+			}
+				else {
+					System.out.println("아이디가 존재하지 않습니다.");
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return loginInfo;
+	}
+	
 	
 	//단건 조회 -> 회원 id로 지정하여 정보 조회 
+	public Member selectOneById(String memberId) {
+		
+		Member member = null;
+		
+		try {
+			connect();
+			
+			String sql = "SELECT* FROM members WHERE member_id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+					member = new Member();
+					member.setMemberNum(rs.getInt("member_num"));
+					member.setMemberName(rs.getString("member_name"));
+					member.setMemberPhone(rs.getInt("member_phone"));
+					member.setMemberId(rs.getString("member_id"));
+					member.setMemberPwd(rs.getString("member_pwd"));
+					member.setMemberRole(rs.getInt("member_role"));
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return member;
+		
+	}
+	
 	
 	//전체 조회 -> 전체 회원 정보 조회
+	public List<Member> selectAll(){
+		List<Member> list = new ArrayList<>();
+		
+			try {
+				connect();
+				
+				String sql = "SELECT*FROM members "
+							+ "ORDER BY member_num ";
+				
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery(sql);
+				
+				while(rs.next()) {	//데이터가 몇개인지 모르니까 와일문 돌리기
+					Member member = new Member();
+					member.setMemberNum(rs.getInt("member_num"));
+					member.setMemberName(rs.getString("member_name"));
+					member.setMemberPhone(rs.getInt("member_phone"));
+					member.setMemberId(rs.getString("member_id"));
+					member.setMemberPwd(rs.getString("member_pwd"));
+					member.setMemberRole(rs.getInt("member_role"));
+					list.add(member);
+				}
+				
+			} catch(SQLException e) {
+				e.printStackTrace();
+			} finally {
+				disconnect();
+			}
+			
+			return list;
+			
+		}
+			
+			
+		
 	
 }
