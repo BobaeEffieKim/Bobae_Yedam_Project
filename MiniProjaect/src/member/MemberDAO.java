@@ -10,7 +10,7 @@ import common.DAO;
 public class MemberDAO extends DAO{
 
 	private static MemberDAO dao = null;
-	private MemberDAO() {}
+	public MemberDAO() {}
 	public static MemberDAO getInstance() {
 		if(dao == null) {
 			dao = new MemberDAO();
@@ -112,7 +112,7 @@ public class MemberDAO extends DAO{
 	
 	
 	//삭제 - 회원 탈퇴 시 
-	public void delete(int memberId) {
+	public void delete(String memberId) {
 		
 		try {
 			connect();

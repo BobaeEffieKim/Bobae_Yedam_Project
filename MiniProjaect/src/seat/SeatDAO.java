@@ -104,7 +104,7 @@ public class SeatDAO extends DAO{
 	
 	
 	//단건 조회 - 좌석 번호로 
-	public Seat select(int seatNum) {
+	public Seat selectBySeatNum(int seatNum) {
 		
 		Seat seat = null;
 		
@@ -127,9 +127,32 @@ public class SeatDAO extends DAO{
 	
 	
 	//단건 조회 - 렌탈 여부 -> 여기서 아님 대여관리클래스에서??
+	public Seat selectBySeatRental(int seatRental) {
+		Seat seat = null;
+		
+		try {
+			connect();
+			
+			String sql = "SELECT* FROM seats WHERE seat_rental = ?";
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, seatRental);
+			rs = pstmt.executeQuery();
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		return seat;
+	}
+	
 	
 	//전체 조회 - 좌석 배치도와 전체 좌석
 	public List<Seat> selectAll(){
+		
+		seatArrangement();
+		
 		List<Seat> list = new ArrayList<Seat>();
 		
 		try {
@@ -159,7 +182,44 @@ public class SeatDAO extends DAO{
 		return list;
 	}
 	
-	
+	public void seatArrangement() {
+		
+		System.out.println("< 좌석 배치도 >");
+		System.out.println();
+		System.out.println();
+		System.out.println("-------------------------------------------");
+		System.out.println("|     |     |     |     |     |     |     |");
+		System.out.println("|  1  |  2  |  3  |  4  |  5  |  6  |  7  |");
+		System.out.println("|     |     |     |     |     |     |     |");
+		System.out.println("-------------------------------------------");
+		System.out.println("            |     |     |     |            ");
+		System.out.println("            |  8  |  9  |  10 |            ");
+		System.out.println("            |     |     |     |            ");
+		System.out.println("            -------------------            ");
+		System.out.println();
+		System.out.println();
+		System.out.println("-------           -------           -------");
+		System.out.println("|     |           |     |           |     |");
+		System.out.println("| 11  |           | 12  |           | 13  |");
+		System.out.println("|     |           |     |           |     |");
+		System.out.println("-------           -------           -------");
+		System.out.println();
+		System.out.println();
+		System.out.println("-------           -------           -------");
+		System.out.println("|     |           |     |           |     |");
+		System.out.println("| 14  |           | 15  |           | 16  |");
+		System.out.println("|     |           |     |           |     |");
+		System.out.println("-------           -------           -------");
+		System.out.println();
+		System.out.println();
+		System.out.println("-------           -------           -------");
+		System.out.println("|     |           |     |           |     |");
+		System.out.println("| 17  |           | 18  |           | 19  |");
+		System.out.println("|     |           |     |           |     |");
+		System.out.println("-------           -------           -------");
+		
+		
+	}
 	
 	
 }
