@@ -160,10 +160,70 @@ public class MemberManagement extends Management{
 		}
 		
 		
+	
+		
+		private void updatePwd() {
+			
+			String memberId = inputId();
+			
+			Member member = memberDAO.selectOneById(memberId);
+			
+			if(member == null) {
+				System.out.println("등록된 정보가 없습니다.");
+				return;
+			}
+			
+			member = inputUpdatePwd(member);
+			
+			memberDAO.updateMemberPwd(member);
+			
+		}
+		
+		private Member inputUpdatePwd(Member member) {
+			
+			System.out.println("기존 비밀번호 > " + member.getMemberPwd());
+			System.out.println("수정할 비밀번호(수정하지 않을 경우 0 입력) > ");
+			
+			
+			//members 테이블의 데이터타입을 문자로 바꿔주고 진행하기!!!!
+			//현재 관리자 계정도 삭제되어있는 상태!
+			String pwd = sc.nextLine();
+			
+			
+			if(!pwd.equals("0")) {
+				member.setMemberPhone(pwd);
+			}
+			
+			return member;
+		}
 		
 		
+	
+		
+		private void selectOne() {
+			
+			String memberId = inputId();
+			
+			Member member = memberDAO.selectOneById(memberId);
+			
+			if(member == null) {
+				
+				System.out.println("등록된 회원이 아닙니다.");
+				
+				return;
+			}
+			System.out.println(member);
+		}
 		
 		
+		private void selectAll() {
+			List<Member> list = memberDAO.selectAll();
+			
+			for(Member member : list) {
+				System.out.println(member);
+			}
+			
+		}
 		
 		
 		

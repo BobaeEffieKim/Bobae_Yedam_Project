@@ -4,7 +4,7 @@ public class Member {
 
 	private int memberNum;
 	private String memberName;
-	private int memberPhone;
+	private String memberPhone;
 	private String memberId;
 	private String memberPwd;
 	//memberRole 0 : 관리자, 1 : 일반사원 
@@ -23,10 +23,10 @@ public class Member {
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
 	}
-	public int getMemberPhone() {
+	public String getMemberPhone() {
 		return memberPhone;
 	}
-	public void setMemberPhone(int memberPhone) {
+	public void setMemberPhone(String memberPhone) {
 		this.memberPhone = memberPhone;
 	}
 	public String getMemberId() {

@@ -33,10 +33,9 @@ public class MemberDAO extends DAO{
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, member.getMemberName());
-			pstmt.setInt(2, member.getMemberPhone());
-			pstmt.setInt(3, member.getMemberPhone());
-			pstmt.setString(4, member.getMemberId());
-			pstmt.setString(5, member.getMemberPwd());
+			pstmt.setString(2, member.getMemberPhone());
+			pstmt.setString(3, member.getMemberId());
+			pstmt.setString(4, member.getMemberPwd());
 			
 			int result = pstmt.executeUpdate();
 			
@@ -63,7 +62,7 @@ public class MemberDAO extends DAO{
 			String sql = "UPDATE members SET member_phone = ? WHERE member_name = ?";
 			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, member.getMemberPhone());
+			pstmt.setString(1, member.getMemberPhone());
 			pstmt.setString(2, member.getMemberName());
 			
 			int result = pstmt.executeUpdate();
@@ -192,7 +191,7 @@ public class MemberDAO extends DAO{
 					member = new Member();
 					member.setMemberNum(rs.getInt("member_num"));
 					member.setMemberName(rs.getString("member_name"));
-					member.setMemberPhone(rs.getInt("member_phone"));
+					member.setMemberPhone(rs.getString("member_phone"));
 					member.setMemberId(rs.getString("member_id"));
 					member.setMemberPwd(rs.getString("member_pwd"));
 					member.setMemberRole(rs.getInt("member_role"));
@@ -225,7 +224,7 @@ public class MemberDAO extends DAO{
 					Member member = new Member();
 					member.setMemberNum(rs.getInt("member_num"));
 					member.setMemberName(rs.getString("member_name"));
-					member.setMemberPhone(rs.getInt("member_phone"));
+					member.setMemberPhone(rs.getString("member_phone"));
 					member.setMemberId(rs.getString("member_id"));
 					member.setMemberPwd(rs.getString("member_pwd"));
 					member.setMemberRole(rs.getInt("member_role"));
