@@ -49,6 +49,30 @@ public class SeatDAO extends DAO{
 		
 	}
 	
+	//삭제 
+	public void delete(int seatNum) {
+		try {
+			connect();
+			
+			String sql = "DELETE FROM seats WHERE seat_num =" + seatNum;
+			stmt = conn.createStatement();
+			
+			int result = stmt.executeUpdate(sql);
+			if(result > 0) {
+				System.out.println("정상적으로 삭제되었습니다.");
+			} else {
+				System.out.println("정상적으로 삭제되지 않았습니다.");
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		
+		
+	}
+	
 	
 	//수정 - 대여가 
 	public void updateSeatNum(Seat seat) {
@@ -111,11 +135,18 @@ public class SeatDAO extends DAO{
 		try {
 			connect();
 			
-			String sql = "SELECT*FROM seats WHERE seat_num = ?";
+			String sql = "SELECT * FROM seats WHERE seat_num = ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, seatNum);
 			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				seat = new Seat();
+				seat.setSeatNum(rs.getInt("seat_num"));
+				seat.setSeatPrice(rs.getInt("seat_price"));
+				seat.setSeatRental(rs.getInt("seat_rental"));
+			}
 			
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -127,8 +158,10 @@ public class SeatDAO extends DAO{
 	
 	
 	//단건 조회 - 렌탈 여부 -> 여기서 아님 대여관리클래스에서??
-	public Seat selectBySeatRental(int seatRental) {
-		Seat seat = null;
+	public List<Seat> selectBySeatRental(int seatRental) {
+		
+		List<Seat> list = new ArrayList<Seat>();
+		
 		
 		try {
 			connect();
@@ -139,12 +172,22 @@ public class SeatDAO extends DAO{
 			pstmt.setInt(1, seatRental);
 			rs = pstmt.executeQuery();
 			
+			while(rs.next()) {
+				Seat seat = new Seat();
+				
+				seat.setSeatNum(rs.getInt("seat_num"));
+				seat.setSeatPrice(rs.getInt("seat_price"));
+				seat.setSeatRental(rs.getInt("seat_rental"));
+				
+				list.add(seat);
+			}	
+			
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
 			disconnect();
 		}
-		return seat;
+		return list;
 	}
 	
 	

@@ -5,6 +5,7 @@ import java.util.Scanner;
 import member.MemberDAO;
 import member.MemberManagement;
 import rent.RentDAO;
+import rent.SeatRentManagement;
 import seat.SeatDAO;
 
 public class Management {

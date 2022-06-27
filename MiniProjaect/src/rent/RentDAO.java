@@ -33,7 +33,7 @@ public class RentDAO extends DAO{
 			pstmt.setString(1, rent.getMemberId());
 			pstmt.setInt(2, rent.getSeatNum());
 			pstmt.setInt(3, rent.getSeatPrice());
-			pstmt.setDate(4, rent.getRent_date());
+			pstmt.setString(4, rent.getRent_date());
 			pstmt.setInt(5, rent.getRent_hour());
 			pstmt.setInt(6, rent.getRent_price());
 			
@@ -74,7 +74,7 @@ public class RentDAO extends DAO{
 					rent.setMemberId(rs.getString("member_id"));
 					rent.setSeatNum(rs.getInt("seat_num"));
 					rent.setSeatPrice(rs.getInt("seat_price"));
-					rent.setRent_date(rs.getDate("rent_date"));
+					rent.setRent_date(rs.getString("rent_date"));
 					rent.setRent_hour(rs.getInt("rent_hour"));
 					rent.setRent_price(rs.getInt("rent_price"));
 					
@@ -110,7 +110,7 @@ public class RentDAO extends DAO{
 					rent.setMemberId(rs.getString("member_id"));
 					rent.setSeatNum(rs.getInt("seat_num"));
 					rent.setSeatPrice(rs.getInt("seat_price"));
-					rent.setRent_date(rs.getDate("rent_date"));
+					rent.setRent_date(rs.getString("rent_date"));
 					rent.setRent_hour(rs.getInt("rent_hour"));
 					rent.setRent_price(rs.getInt("rent_price"));
 					
@@ -151,7 +151,7 @@ public class RentDAO extends DAO{
 					rent.setMemberId(rs.getString("member_id"));
 					rent.setSeatNum(rs.getInt("seat_num"));
 					rent.setSeatPrice(rs.getInt("seat_price"));
-					rent.setRent_date(rs.getDate("rent_date"));
+					rent.setRent_date(rs.getString("rent_date"));
 					rent.setRent_hour(rs.getInt("rent_hour"));
 					rent.setRent_price(rs.getInt("rent_price"));
 					
@@ -177,7 +177,7 @@ public class RentDAO extends DAO{
 				String sql = "SELECT * FROM rent ORDER BY seat_num";
 				
 				stmt = conn.createStatement();
-				rs = pstmt.executeQuery();
+				rs = stmt.executeQuery(sql);
 				
 				while(rs.next()) {
 					Rent rent = new Rent();
@@ -185,7 +185,7 @@ public class RentDAO extends DAO{
 					rent.setMemberId(rs.getString("member_id"));
 					rent.setSeatNum(rs.getInt("seat_num"));
 					rent.setSeatPrice(rs.getInt("seat_price"));
-					rent.setRent_date(rs.getDate("rent_date"));
+					rent.setRent_date(rs.getString("rent_date"));
 					rent.setRent_hour(rs.getInt("rent_hour"));
 					rent.setRent_price(rs.getInt("rent_price"));
 					

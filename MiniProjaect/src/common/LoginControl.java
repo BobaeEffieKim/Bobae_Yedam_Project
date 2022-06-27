@@ -9,7 +9,7 @@ public class LoginControl {
 
 	private Scanner sc = new Scanner(System.in);
 	private static Member loginInfo = null;
-	static Member getLoginInfo() {
+	public static Member getLoginInfo() {
 		return loginInfo;
 	}
 	
@@ -71,7 +71,40 @@ public class LoginControl {
 		
 		MemberDAO mDAO = new MemberDAO();
 		
-		mDAO.join(loginInfo);
+		Member member = new Member();
+		
+		//아이디 설정
+		System.out.println("아이디 > ");
+		String id = sc.nextLine();
+		Member member = 
+		
+		if()
+		
+		
+		member.setMemberId(sc.nextLine());
+		
+		//중복 확인
+		// 비교 -> 디비에 있눈 데이터와 비교(디비에서 검색->쿼리문 필요) => 조회가 된다면 중복  
+		if(member != ) {
+			
+		}
+		
+		//비번 설정
+		System.out.println("비밀번호 > ");
+		member.setMemberPwd(sc.nextLine());
+			//변수에 값 넣어주기 
+		
+		//비번 확인 = 첫번째 입력과 두번째 입력이 같은 지 확인
+		//String.equals 이용
+		
+		//전화번호 설정
+		System.out.println("전화번호(010-0000-0000 형식) > ");
+		member.setMemberPhone(sc.nextLine());
+		
+		Member joinInfo = MemberDAO.getInstance().join(member);
+		if(joinInfo == null)
+			return;
+		mDAO.join(joinInfo);
 	}
 	
 	
