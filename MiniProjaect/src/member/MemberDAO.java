@@ -10,7 +10,7 @@ import common.DAO;
 public class MemberDAO extends DAO{
 
 	private static MemberDAO dao = null;
-	public MemberDAO() {}
+	private MemberDAO() {}
 	public static MemberDAO getInstance() {
 		if(dao == null) {
 			dao = new MemberDAO();
@@ -59,11 +59,11 @@ public class MemberDAO extends DAO{
 		try {
 			connect();
 			
-			String sql = "UPDATE members SET member_phone = ? WHERE member_name = ?";
+			String sql = "UPDATE members SET member_phone = ? WHERE member_id = ?";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, member.getMemberPhone());
-			pstmt.setString(2, member.getMemberName());
+			pstmt.setString(2, member.getMemberId());
 			
 			int result = pstmt.executeUpdate();
 			
@@ -116,7 +116,7 @@ public class MemberDAO extends DAO{
 		try {
 			connect();
 			
-			String sql = "DELETE FROM members WHERE member_id = " +memberId;
+			String sql = "DELETE FROM members WHERE member_id = '" + memberId +"'";
 			
 			stmt = conn.createStatement();
 			
@@ -194,7 +194,7 @@ public class MemberDAO extends DAO{
 					member.setMemberPhone(rs.getString("member_phone"));
 					member.setMemberId(rs.getString("member_id"));
 					member.setMemberPwd(rs.getString("member_pwd"));
-					member.setMemberRole(rs.getInt("member_role"));
+					member.setMemberRole(rs.getInt("memberRole"));
 			}
 			
 		} catch(SQLException e) {
@@ -227,7 +227,7 @@ public class MemberDAO extends DAO{
 					member.setMemberPhone(rs.getString("member_phone"));
 					member.setMemberId(rs.getString("member_id"));
 					member.setMemberPwd(rs.getString("member_pwd"));
-					member.setMemberRole(rs.getInt("member_role"));
+					member.setMemberRole(rs.getInt("memberRole"));
 					list.add(member);
 				}
 				

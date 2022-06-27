@@ -137,9 +137,9 @@ public class RentDAO extends DAO{
 				connect();
 				
 				String sql = "SELECT r.rent_date, s.seat_num, s.seat_price, r.rent_hour, r.rent_price "
-						+ "FROM seats s JOIN rent "
+						+ "FROM seats s JOIN rent r "
 						+ "ON s.seat_price = r.seat_price "
-						+ "WHERE rent_date = ? ORDER BY rent_date;";
+						+ "WHERE rent_date = ? ORDER BY rent_date, seat_num";
 				
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setDate(1, rent_date);

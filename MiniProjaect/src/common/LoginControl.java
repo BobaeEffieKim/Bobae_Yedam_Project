@@ -1,12 +1,13 @@
 package common;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 import member.Member;
 import member.MemberDAO;
 
 public class LoginControl {
-
+	private MemberDAO mDAO = MemberDAO.getInstance();
 	private Scanner sc = new Scanner(System.in);
 	private static Member loginInfo = null;
 	public static Member getLoginInfo() {
@@ -40,9 +41,9 @@ public class LoginControl {
 	
 	private void menuPrint() {
 		
-		System.out.println("======================");
+		System.out.println("========================");
 		System.out.println("1.회원가입  2.로그인  3.종료");
-		System.out.println("======================");
+		System.out.println("========================");
 	}
 	
 	private int menuSelect() {
@@ -69,30 +70,68 @@ public class LoginControl {
 	private void join() {
 		
 		
-		MemberDAO mDAO = new MemberDAO();
-		
-		Member member = new Member();
-		
 		//아이디 설정
+		Member member = null;
+		while(true) {
+		
 		System.out.println("아이디 > ");
+		
 		String id = sc.nextLine();
-		Member member = 
-		
-		if()
+		member = mDAO.selectOneById(id);
 		
 		
-		member.setMemberId(sc.nextLine());
 		
-		//중복 확인
-		// 비교 -> 디비에 있눈 데이터와 비교(디비에서 검색->쿼리문 필요) => 조회가 된다면 중복  
-		if(member != ) {
-			
+		if(member != null) {
+			System.out.println("사용 중인 아이디입니다.");
+		} else {
+			member = new Member();
+			member.setMemberId(id);
+			break;
 		}
 		
+		
+		}
+		//String id = sc.nextLine();
+		
+//		//Member member =
+//		
+//		boolean isSelected = false;
+//		
+//		try {
+//			connect();
+//			
+//			String sql = "SELECT COUNT(*) AS count "
+//						+"FROM members WHERE member_id = ?";
+//			
+//			
+//		if() {
+//		
+//		} catch(SQLException e) {
+//		member.setMemberId(sc.nextLine());
+//		} finally {
+//			disconnect();
+//		}
+//		//중복 확인
+		// 비교 -> 디비에 있눈 데이터와 비교(디비에서 검색->쿼리문 필요) => 조회가 된다면 중복  
+//		if(member != ) {
+//			
+//		}
+		
 		//비번 설정
+		
+		while(true) {
 		System.out.println("비밀번호 > ");
 		member.setMemberPwd(sc.nextLine());
 			//변수에 값 넣어주기 
+		
+		System.out.println("비밀번호 재입력 > ");
+		String pwdCheck = sc.nextLine();
+		if(!pwdCheck.equals(member.getMemberPwd())) {
+			System.out.println("일치하지 않습니다. 비밀번호를 다시 입력하세요.");
+		} else {
+			break;
+		}
+		}
 		
 		//비번 확인 = 첫번째 입력과 두번째 입력이 같은 지 확인
 		//String.equals 이용
