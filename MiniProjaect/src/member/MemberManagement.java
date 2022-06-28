@@ -1,5 +1,6 @@
 package member;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -72,11 +73,23 @@ public class MemberManagement extends Management {
 
 		Member member = memberDAO.selectOneById(memberId);
 
+		List<Rent> list = rentDAO.selectOneMemberId(memberId);
+			for(Rent rent : list) {
+				if(rent.getReturn_time() == null) {
+					System.out.println("대여중인 좌석이 있습니다.");
+					
+					return;
+				} 
+			
+		}
+		
 		if (member == null) {
 			System.out.println("등록된 정보가 없습니다.");
 			return;
 		}
 
+	//	if()
+		
 		List<Rent> isSelected = rentDAO.selectOneMemberId(memberId);
 
 		if (isSelected != null) {

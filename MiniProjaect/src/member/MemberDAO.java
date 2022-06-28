@@ -40,9 +40,19 @@ public class MemberDAO extends DAO{
 			int result = pstmt.executeUpdate();
 			
 			if(result > 0) {
-				System.out.println("회원가입이 완료되었습니다.");
+				
+				System.out.println("        ߍ___ߍ          ");
+				System.out.println("       (｡･◡･｡)         ");
+				System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+				System.out.println("  회원가입이 완료되었습니다. ");
+				System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
+				
 			} else {
-				System.out.println("회원가입에 실패하였습니다.");
+				System.out.println("        ߍ___ߍ          ");
+				System.out.println("       (·ㅠ-ㅠ)         ");
+				System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+				System.out.println("  회원가입에 실패하였습니다. ");
+				System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			}
 			
 		} catch(SQLException e) {
@@ -68,9 +78,17 @@ public class MemberDAO extends DAO{
 			int result = pstmt.executeUpdate();
 			
 			if(result > 0) {
-				System.out.println("정상적으로 수정되었습니다.");
+				System.out.println("        ߍ___ߍ          ");
+				System.out.println("       (｡･◡･｡)         ");
+				System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+				System.out.println("  정상적으로 수정되었습니다. ");
+				System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			} else {
-				System.out.println("정상적으로 수정되지 않았습니다.");
+				System.out.println("        ߍ___ߍ          ");
+				System.out.println("       (·ㅠ-ㅠ)         ");
+				System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+				System.out.println("  업데이트에 실패하였습니다. ");
+				System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			}
 			
 		} catch(SQLException e) {
@@ -96,9 +114,17 @@ public class MemberDAO extends DAO{
 			int result = pstmt.executeUpdate();
 			
 			if(result > 0) {
-				System.out.println("정상적으로 수정되었습니다.");
+				System.out.println("        ߍ___ߍ          ");
+				System.out.println("       (｡･◡･｡)         ");
+				System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+				System.out.println("  정상적으로 수정되었습니다. ");
+				System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			} else {
-				System.out.println("정상적으로 수정되지 않았습니다.");
+				System.out.println("        ߍ___ߍ          ");
+				System.out.println("       (·ㅠ-ㅠ)         ");
+				System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+				System.out.println("  업데이트에 실패하였습니다. ");
+				System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			}
 			
 			
@@ -120,12 +146,22 @@ public class MemberDAO extends DAO{
 			
 			stmt = conn.createStatement();
 			
+			
+			
 			int result = stmt.executeUpdate(sql);
 			
 			if(result > 0) {
-				System.out.println("정상적으로 삭제되었습니다.");
+				System.out.println("        ߍ___ߍ          ");
+				System.out.println("       (｡･◡･｡)         ");
+				System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+				System.out.println("  정상적으로 삭제되었습니다. ");
+				System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			} else {
-				System.out.println("정상적으로 삭제되지 않았습니다.");
+				System.out.println("        ߍ___ߍ          ");
+				System.out.println("       (·ㅠ-ㅠ)         ");
+				System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+				System.out.println("    삭제에 실패하였습니다. ");
+				System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			}
 			
 		} catch(SQLException e) {
@@ -157,11 +193,19 @@ public class MemberDAO extends DAO{
 					loginInfo.setMemberRole(rs.getInt("memberRole"));
 					
 				} else {
-					System.out.println("비밀번호가 일치하지 않습니다.");
+					System.out.println("        ߍ___ߍ          ");
+					System.out.println("       (｡`ㅅ´｡)         ");
+					System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+					System.out.println(" 비밀번호가 일치하지않습니다. ");
+					System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 				}
 			}
 				else {
-					System.out.println("아이디가 존재하지 않습니다.");
+					System.out.println("        ߍ___ߍ          ");
+					System.out.println("       (｡`ㅅ´｡)         ");
+					System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+					System.out.println("  아이디가 존재하지않습니다. ");
+					System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			}
 			
 		} catch(SQLException e) {

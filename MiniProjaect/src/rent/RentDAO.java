@@ -40,11 +40,18 @@ public class RentDAO extends DAO{
 			
 			int result = pstmt.executeUpdate();
 			if(result > 0) {
-				System.out.println("정상적으로 등록되었습니다.");
+				System.out.println("        ߍ___ߍ          ");
+				System.out.println("       (｡･◡･｡)         ");
+				System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+				System.out.println("  정상적으로 등록되었습니다. ");
+				System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			} else {
-				System.out.println("정상적으로 등록되지 않았습니다.");
+				System.out.println("        ߍ___ߍ          ");
+				System.out.println("       (·ㅠ-ㅠ)         ");
+				System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+				System.out.println("    등록에 실패하였습니다.  ");
+				System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			}
-			
 			
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -230,9 +237,17 @@ public class RentDAO extends DAO{
 				int result = pstmt.executeUpdate();
 				
 				if(result > 0) {
-					System.out.println("반납이 완료되었습니다.");
+					System.out.println("        ߍ___ߍ          ");
+					System.out.println("       (｡･◡･｡)         ");
+					System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+					System.out.println("    반납이 완료되었습니다.  ");
+					System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 				} else {
-					System.out.println("반납이 정상적으로 완료되지 않았습니다.");
+					System.out.println("        ߍ___ߍ          ");
+					System.out.println("       (·ㅠ-ㅠ)         ");
+					System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+					System.out.println("    반납에 실패하였습니다.  ");
+					System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 				}
 				
 				
@@ -244,6 +259,97 @@ public class RentDAO extends DAO{
 		}
 		
 		
+		//단건조회
 		
+		public Rent selectOneById(String memberId) {
+			
+			Rent rent = null;
+			
+			try {
+				connect();
+				
+				String sql = "SELECT seat_num FROM rents WHERE member_id = ?";
+				
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, memberId);
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					rent = new Rent();
+					rent.setMemberId(rs.getString("member_id"));
+					rent.setRent_date(rs.getTimestamp("rent_date"));
+					rent.setRent_hour(rs.getInt("rent_hour"));
+					rent.setRent_price();
+					rent.setReturn_time(rs.getTimestamp("return_time"));
+					rent.setSeatNum(rs.getInt("seat_num"));
+					rent.setSeatPrice(rs.getInt("seat_price"));
+				}
+				
+			} catch(SQLException e) {
+				e.printStackTrace();
+			} finally {
+				disconnect();
+			}
+			return rent;
+		}
+		
+		
+		
+		
+		//연체
+//        public String lateWarn(int seatNum) {
+//           String lateWarn = "";
+//           try {
+//              connect();
+//              String sql = "SELECT return_time, rent_hour, " 
+//                      +"CASE WHEN return_time < (rent_date + (INTERVAL '?' day)) " 
+//                      +"THEN 0 "
+//                      +"WHEN return_time > (rent_date + (INTERVAL '?' day)) "
+//                      +"THEN 1 "
+//                      +"END late FROM rent WHERE seat_num = "+ seatNum;
+//              
+//              pstmt = conn.prepareStatement(sql);
+//              pstmt.setInt(1, );
+//              
+//              if(rs.next()) {
+//                 int late = rs.getInt("late");
+//                 if(late>0) {
+//                    
+//                    lateWarn += "\n <( ‵□′)>── [ "+ late + " ] 일 연체되어 연체료 [ "+late*500+" ] 원이 발생했습니다 ─Ｃε(┬﹏┬)3  \n";
+//                 }
+//              }else {
+//                 
+//              }
+//           }catch(SQLException e) {
+//              e.printStackTrace();
+//           }finally {
+//              disconnect();
+//           }
+//           return lateWarn;
+//        }
+//		
+//		
+		//현재 대여 중인 좌석이 있는지 확인하는 기능 
+		
+//		public Rent rentCheck() {
+//			
+//			Rent rent = null;
+//			
+//			try {
+//				connect();
+//				
+//				String sql = "";
+//				
+//			} catch(SQLException e) {
+//				e.printStackTrace();
+//			} finally {
+//				disconnect();
+//			}
+//			
+//			
+//			
+//			return rent;
+//		}
+//		
 		
 	}
