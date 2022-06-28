@@ -1,11 +1,13 @@
 package rent;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
 import common.LoginControl;
 import common.Management;
+import member.Member;
 import seat.Seat;
 
 public class SeatRentManagement extends Management {
@@ -166,45 +168,45 @@ public class SeatRentManagement extends Management {
 	private void rentSeat() {
 		int seatNum = inputNum();
 
+		//
 		Seat seat = seatDAO.selectBySeatNum(seatNum);
 
 		if (seat == null) {
 			System.out.println("등록되지 않은 좌석입니다.");
 			return;
+		} 
+		
+		//대여중인건지 확인
+		
+		int rental = seat.getSeatRental();
+		
+		if(rental == 1) {
+			System.out.println("대여 중인 좌석입니다.");
+			return;
+		} else {
+			seat.setSeatRental(1);
+			
+			
 		}
+		
+		
+		
 		////////////////////////////////////////
 		// 대여시간, 가격
 
 		Rent rent = inputHour();
-
+		rent.setSeatNum(seat.getSeatNum());
 		rent.setMemberId(LoginControl.getLoginInfo().getMemberId());
 		/////////////////////////////////////////////
 		
-		Seat s = seatDAO.selectBySeatNum(seatNum);
-		rent.setSeatPrice(s.getSeatPrice());
+		rent.setSeatPrice(seat.getSeatPrice());
+		rent.setRent_price();
 		
-		
-		int sh = rent.getRent_hour(); 
-		int totalPrice = sh * s.getSeatPrice();
-		rent.setRent_price(totalPrice);
-		
-		System.out.println("대여할 좌석 번호 > ");
-		rent.setSeatNum(Integer.parseInt(sc.nextLine()));
-		System.out.println("대여 희망 시간 (숫자로 입력) > ");
-		rent.setRent_hour(Integer.parseInt(sc.nextLine()));
-		System.out.println("대여 날짜(YYYY-MM-DD) > ");
-		rent.setRent_date(sc.nextLine());
-		
-		
-		List<Rent> list = rentDAO.selectAllSeatNum();
 		System.out.println("총 대여 가격 : "+rent.getRent_price());
 		rentDAO.insert(rent);
 		
-
-		seat.setSeatRental(1);
-
 		seatDAO.updateSeatRental(seat);
-		
+
 	}
 
 	private Rent inputHour() {
@@ -227,12 +229,20 @@ public class SeatRentManagement extends Management {
 
 		Seat seat = seatDAO.selectBySeatNum(seatNum);
 
+		
+		
 		if (seat == null) {
 			System.out.println("등록되지 않은 좌석입니다.");
 			return;
 		} else {
 			seat.setSeatRental(0);
 			seatDAO.updateSeatRental(seat);
+			
+			Rent rent = new Rent();
+			rent.setSeatNum(seatNum);
+			rent.setMemberId(LoginControl.getLoginInfo().getMemberId());
+			rentDAO.updateReturnTime(rent);
+			
 		}
 
 	}
@@ -295,8 +305,10 @@ public class SeatRentManagement extends Management {
 
 	// 날짜별 대여내역 조회
 	private void dateRentStatus() {
-		Date rent_date = new Date(0);
-		List<Rent> list = rentDAO.selectAllRentDate(rent_date);
+		System.out.println("날짜를 입력하세요. (YYYY-MM-DD)>");
+		String date = sc.nextLine();
+		
+		List<Rent> list = rentDAO.selectAllRentDate(date);
 
 		for (Rent rent : list) {
 			System.out.println(rent);
@@ -317,9 +329,10 @@ public class SeatRentManagement extends Management {
 
 	// 회원별 대여내역 조회
 	private void showRentByMember() {
-		String memberId = inputId();
+		//String memberId = inputId();
 		List<Rent> list = rentDAO.selectOneMemberId(inputId());
 
+				
 		for (Rent rent : list) {
 			System.out.println(rent);
 		}

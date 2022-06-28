@@ -40,10 +40,11 @@ public class Management {
 	
 
 	protected void menuPrint() {
-		
-		System.out.println("==================================");
+		System.out.println();
+		System.out.println("===================================");
 		System.out.println("1.회원 관리  2.좌석 및 좌석대여 관리  9.종료");
-		System.out.println("==================================");
+		System.out.println("===================================");
+		System.out.println();
 	}
 	
 	

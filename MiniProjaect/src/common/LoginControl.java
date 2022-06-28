@@ -16,6 +16,21 @@ public class LoginControl {
 	
 	public LoginControl() {
 		
+	
+//		|￣￣￣￣￣￣￣￣￣￣￣￣￣￣|
+//    	Your text here
+//    |＿＿＿＿＿＿＿＿＿＿＿＿＿＿|
+//          \ (•◡•) /
+//           \    /
+	
+		System.out.println();
+		System.out.println("|￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣￣|");
+		System.out.println("   YEDAM 스터디 카페에 오신 것을 환영합니다 ^0^    "  );
+		System.out.println("   ✩ ✩ ✩ ✩ ✩ 메뉴를 입력해주세요 ✩ ✩ ✩ ✩ ✩     ");
+		System.out.println("|＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿|");
+		System.out.println("               \\ (•◡•) /");
+		System.out.println("                \\    /");
+		
 		while(true) {
 			menuPrint();
 			
@@ -37,13 +52,14 @@ public class LoginControl {
 		}
 		
 	}
-	
+
 	
 	private void menuPrint() {
-		
-		System.out.println("========================");
-		System.out.println("1.회원가입  2.로그인  3.종료");
-		System.out.println("========================");
+		System.out.println();
+		System.out.println("     ╭─────────────────────────╮");
+		System.out.println("      1.회원가입   2.로그인   3.종료");
+		System.out.println("     ╰─────────────────────────╯");
+		System.out.println();
 	}
 	
 	private int menuSelect() {
@@ -91,31 +107,6 @@ public class LoginControl {
 		
 		
 		}
-		//String id = sc.nextLine();
-		
-//		//Member member =
-//		
-//		boolean isSelected = false;
-//		
-//		try {
-//			connect();
-//			
-//			String sql = "SELECT COUNT(*) AS count "
-//						+"FROM members WHERE member_id = ?";
-//			
-//			
-//		if() {
-//		
-//		} catch(SQLException e) {
-//		member.setMemberId(sc.nextLine());
-//		} finally {
-//			disconnect();
-//		}
-//		//중복 확인
-		// 비교 -> 디비에 있눈 데이터와 비교(디비에서 검색->쿼리문 필요) => 조회가 된다면 중복  
-//		if(member != ) {
-//			
-//		}
 		
 		//비번 설정
 		
@@ -133,8 +124,10 @@ public class LoginControl {
 		}
 		}
 		
-		//비번 확인 = 첫번째 입력과 두번째 입력이 같은 지 확인
-		//String.equals 이용
+		
+		//이름
+		System.out.println("이름 > ");
+		member.setMemberName(sc.nextLine());
 		
 		//전화번호 설정
 		System.out.println("전화번호(010-0000-0000 형식) > ");

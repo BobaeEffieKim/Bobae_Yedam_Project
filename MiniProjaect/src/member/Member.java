@@ -56,9 +56,10 @@ public class Member {
 		if(memberRole == 0) {
 			info = "관리자 계정 : " + memberId;
 		} else {
-			info = "일반 계정 : " + memberId;
+			info = "일반 계정 : " + memberId +"\n(이름 ▶▶ " + memberName
+					+ ", 전화번호 ▶▶ "+memberPhone+")\n";
 		}
-		return "";
+		return info;
 	}
 	
 }

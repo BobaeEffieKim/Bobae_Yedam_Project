@@ -126,6 +126,20 @@ public class SeatDAO extends DAO{
 		}
 	}
 	
+//	private void updateReturnTime(Seat seat) {
+//		try {
+//			connect();
+//			
+//			String sql = "UPDATE rent SET return_time = ? WHERE seat_rental =  ";
+//			
+//		} catch(SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			disconnect();
+//		}
+//	}
+//	
+//	
 	
 	//단건 조회 - 좌석 번호로 
 	public Seat selectBySeatNum(int seatNum) {
@@ -227,7 +241,7 @@ public class SeatDAO extends DAO{
 	
 	public void seatArrangement() {
 		
-		System.out.println("< 좌석 배치도 >");
+		System.out.println("               < 좌석 배치도 >");
 		System.out.println();
 		System.out.println();
 		System.out.println("-------------------------------------------");

@@ -181,7 +181,7 @@ public class MemberDAO extends DAO{
 		try {
 			connect();
 			
-			String sql = "SELECT* FROM members WHERE member_id = ?";
+			String sql = "SELECT * FROM members WHERE member_id = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberId);
 			rs = pstmt.executeQuery();
