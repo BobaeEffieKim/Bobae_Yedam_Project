@@ -7,6 +7,17 @@ public class Seat {
 	private int seatPrice;
 	private int seatRental;
 	
+	/*
+	private int seatAdd;
+	
+	public int getSeatAdd() {
+		return seatAdd;
+	}
+	public void setSeatAdd(int seatAdd) {
+		this.seatAdd = seatAdd;
+	}
+	*/
+	
 	public int getSeatNum() {
 		return seatNum;
 	}
@@ -35,7 +46,16 @@ public class Seat {
 		} else {
 			str = "대여중";
 		}
+		
+	/*	
+		String add = "";
+		if(seatAdd == 0) {
+			add = "좌석 증축";
+		} else {
+			add = "좌석 그대로 유지";
+		}
+	*/	
 		return "좌석 번호 : " + seatNum + ", 좌석 가격 : " + seatPrice
-				+ ", 대여 가능 여부 : " + str;
+				+ ", 대여 가능 여부 : " + str ;
 	}
 }

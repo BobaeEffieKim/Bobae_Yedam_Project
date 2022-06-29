@@ -27,7 +27,7 @@ public class SeatDAO extends DAO{
 		try {
 			connect();
 			
-			String sql = "INSERT INTO seats (seat_num, seat_price) VALUES (?,?)";
+			String sql = "INSERT INTO seats (seat_num, seat_price) VALUES (?, ?)";
 			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, seat.getSeatNum());
@@ -35,10 +35,18 @@ public class SeatDAO extends DAO{
 			
 			int result = pstmt.executeUpdate();
 			
-			if(result > 0) {
-				System.out.println("정상적으로 등록되었습니다.");
+			if (result > 0) {
+				//System.out.println("         ߍ__ߍ          ");
+				//System.out.println("        (｡･◡･｡)         ");
+				System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+				System.out.println("  정상적으로 등록되었습니다. ");
+				System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			} else {
-				System.out.println("정상적으로 등록되지 않았습니다.");
+				//System.out.println("         ߍ__ߍ          ");
+				//System.out.println("        (ㅠ-ㅠ)         ");
+				System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+				System.out.println("    등록에 실패하였습니다.  ");
+				System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			}
 			
 		} catch(SQLException e) {
@@ -59,11 +67,18 @@ public class SeatDAO extends DAO{
 			
 			int result = stmt.executeUpdate(sql);
 			if(result > 0) {
-				System.out.println("정상적으로 삭제되었습니다.");
+				//System.out.println("         ߍ__ߍ          ");
+				//System.out.println("        (｡･◡･｡)         ");
+				System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+				System.out.println("  정상적으로 삭제되었습니다. ");
+				System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			} else {
-				System.out.println("정상적으로 삭제되지 않았습니다.");
+				//System.out.println("         ߍ__ߍ          ");
+				//System.out.println("        (ㅠ-ㅠ)         ");
+				System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+				System.out.println("    삭제에 실패하였습니다. ");
+				System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			}
-			
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -87,9 +102,17 @@ public class SeatDAO extends DAO{
 			int result = pstmt.executeUpdate();
 			
 			if(result > 0) {
-				System.out.println("정상적으로 대여가격이 수정되었습니다.");
+				//System.out.println("           ߍ__ߍ          ");
+				//System.out.println("          (｡･◡･｡)         ");
+				System.out.println("┏━━━━━━━━━O━━━O━━━━━━━━━━━┓");
+				System.out.println(" 대여가격이 정상적으로 수정되었습니다. ");
+				System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 			} else {
-				System.out.println("대여가격이 정상적으로 수정되지 않았습니다.");
+				//System.out.println("         ߍ__ߍ          ");
+				//System.out.println("        (ㅠ-ㅠ)         ");
+				System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+				System.out.println(" 대여가격 수정에 실패하였습니다. ");
+				System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			}
 			
 		} catch(SQLException e) {
@@ -114,9 +137,17 @@ public class SeatDAO extends DAO{
 			int result = pstmt.executeUpdate();
 			
 			if(result > 0) {
-				System.out.println("정상적으로 대여상태가 수정되었습니다.");
+				//System.out.println("           ߍ__ߍ          ");
+				//System.out.println("          (｡･◡･｡)         ");
+				System.out.println("┏━━━━━━━━━O━━━O━━━━━━━━━━━┓");
+				System.out.println(" 대여상태가 정상적으로 수정되었습니다. ");
+				System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 			} else {
-				System.out.println("정상적으로 대여상태가 수정되지 않았습니다.");
+				//System.out.println("         ߍ__ߍ          ");
+				//System.out.println("        (ㅠ-ㅠ)         ");
+				System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+				System.out.println(" 대여상태 수정에 실패하였습니다. ");
+				System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			}
 			
 		} catch(SQLException e) {
@@ -240,43 +271,90 @@ public class SeatDAO extends DAO{
 	}
 	
 	public void seatArrangement() {
-		
-		System.out.println("               < 좌석 배치도 >");
 		System.out.println();
+		System.out.println("               [[ 좌석 배치도 ]]                ");
 		System.out.println();
-		System.out.println("-------------------------------------------");
+		System.out.println("───────────────────────────────────────────");
 		System.out.println("|     |     |     |     |     |     |     |");
 		System.out.println("|  1  |  2  |  3  |  4  |  5  |  6  |  7  |");
 		System.out.println("|     |     |     |     |     |     |     |");
-		System.out.println("-------------------------------------------");
+		System.out.println("───────────────────────────────────────────");
 		System.out.println("            |     |     |     |            ");
 		System.out.println("            |  8  |  9  |  10 |            ");
 		System.out.println("            |     |     |     |            ");
-		System.out.println("            -------------------            ");
+		System.out.println("            ───────────────────            ");
 		System.out.println();
 		System.out.println();
-		System.out.println("-------           -------           -------");
+		System.out.println("───────           ───────           ───────");
 		System.out.println("|     |           |     |           |     |");
 		System.out.println("| 11  |           | 12  |           | 13  |");
 		System.out.println("|     |           |     |           |     |");
-		System.out.println("-------           -------           -------");
+		System.out.println("───────           ───────           ───────");
 		System.out.println();
 		System.out.println();
-		System.out.println("-------           -------           -------");
+		System.out.println("───────           ───────           ───────");
 		System.out.println("|     |           |     |           |     |");
 		System.out.println("| 14  |           | 15  |           | 16  |");
 		System.out.println("|     |           |     |           |     |");
-		System.out.println("-------           -------           -------");
+		System.out.println("───────           ───────           ───────");
 		System.out.println();
 		System.out.println();
-		System.out.println("-------           -------           -------");
+		System.out.println("───────           ───────           ───────");
 		System.out.println("|     |           |     |           |     |");
 		System.out.println("| 17  |           | 18  |           | 19  |");
 		System.out.println("|     |           |     |           |     |");
-		System.out.println("-------           -------           -------");
-		
+		System.out.println("───────           ───────           ───────");
+		System.out.println();
 		
 	}
 	
+/*	
+	public void addSeat(Seat seat) {
+		try {
+			connect();
+			
+			String sql = "UPDATE seats SET seat_add = ? WHERE seat_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, seat.getSeatAdd());
+			pstmt.setInt(2, seat.getSeatNum());
+			
+			int result = pstmt.executeUpdate();
+			
+			if(result > 0) {
+				System.out.println("           ߍ__ߍ          ");
+				System.out.println("          (｡･◡･｡)         ");
+				System.out.println("┏━━━━━━━━━O━━━O━━━━━━━━━━━┓");
+				System.out.println("  좌석 추가 완료 ");
+				System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━┛");
+			} else {
+				System.out.println("         ߍ__ߍ          ");
+				System.out.println("        (ㅠ-ㅠ)         ");
+				System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+				System.out.println(" 좌석 추가 실패 ");
+				System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconnect();
+		}
+		
+	}
+	
+	
+	public void addPrint(int seatNum) {
+		
+		
+		System.out.println();
+		System.out.println("                  ───────           ");
+		System.out.println("                  |     |           ");
+		System.out.println("                  |"+seatNum+ "|           ");
+		System.out.println("                  |     |           ");
+		System.out.println("                  ───────           ");
+		System.out.println();
+		
+	}
+*/	
 	
 }

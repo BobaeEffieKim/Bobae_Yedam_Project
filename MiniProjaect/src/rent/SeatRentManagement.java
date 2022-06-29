@@ -9,6 +9,7 @@ import common.LoginControl;
 import common.Management;
 import member.Member;
 import seat.Seat;
+import seat.SeatDAO;
 
 public class SeatRentManagement extends Management {
 
@@ -52,15 +53,15 @@ public class SeatRentManagement extends Management {
 			menu += " 1.좌석관리 " + "2.대여 내역 조회 ";
 		}
 
-		menu += "3.전체 좌석 및 대여 상태 조회 " + "4.좌석 대여 " + "5.좌석 반납 " + "6.나의 대여 내역 조회 " + "9.뒤로가기";
-		System.out.println("╭──────────────────────────────────────────────────────────────────────────────────────────────╮");
+		menu += " 3.전체 좌석 및 대여 상태 조회 " + "4.좌석 대여 " + "5.좌석 반납 " + "6.나의 대여 내역 조회 " + "9.뒤로가기";
+		System.out.println("──────────────────────────────────────────────────────────────────────────────────────────────");
 		System.out.println(menu);
-		System.out.println("╰──────────────────────────────────────────────────────────────────────────────────────────────╯");
+		System.out.println("──────────────────────────────────────────────────────────────────────────────────────────────");
 	}
 
 	private void back() {
-		System.out.println("        ߍ___ߍ          ");
-		System.out.println("       (｡･◡･｡)         ");
+		//System.out.println("         ߍ__ߍ          ");
+		//System.out.println("        (｡･◡･｡)         ");
 		System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
 		System.out.println("    메인으로 돌아갑니다.   ");
 		System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
@@ -76,15 +77,15 @@ public class SeatRentManagement extends Management {
 		
 		
 		if(choice == 1) {
-			insertSeat();
+			inputAll();
 		} else if(choice == 2) {
 			//좌석번호 입력
 			int seatNum = inputNum();
 			Seat seat = seatDAO.selectBySeatNum(seatNum);
 			//좌석이 존재하는지 검사
 			if(seat == null) {
-				System.out.println("        ߍ___ߍ          ");
-				System.out.println("       (｡`ㅅ´｡)         ");
+				//System.out.println("        ߍ___ߍ          ");
+				//System.out.println("       (｡`ㅅ´｡)         ");
 				System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
 				System.out.println("   등록되지않은 좌석입니다. ");
 				System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
@@ -96,8 +97,8 @@ public class SeatRentManagement extends Management {
 		} else if(choice == 3) {
 			deleteSeat();
 		} else {
-			System.out.println("        ߍ___ߍ          ");
-			System.out.println("       (｡`ㅅ´｡)         ");
+			//System.out.println("        ߍ___ߍ          ");
+			//System.out.println("       (｡`ㅅ´｡)         ");
 			System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
 			System.out.println(" 올바른 형식으로 입력해주세요.");
 			System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
@@ -109,46 +110,87 @@ public class SeatRentManagement extends Management {
 	
 	
 	private int inputSelect1() {
-		System.out.println("╭─────────────────────────────────────────────────────╮");
-		System.out.println(" 선택 ➤ 1.좌석등록 | 2.좌석가격 수정 | 3.좌석삭제 | 9. 뒤로가기" );
-		System.out.println("╰─────────────────────────────────────────────────────╯");
+		System.out.println("─────────────────────────────────────────────────────");
+		System.out.println(" 선택 -> 1.좌석등록 | 2.좌석가격 수정 | 3.좌석삭제 | 9. 뒤로가기" );
+		System.out.println("─────────────────────────────────────────────────────");
 		int selected = Integer.parseInt(sc.nextLine());
 		
 		if(selected == 1) {
-			System.out.println("=======================좌석등록");
+			System.out.println("*************************좌석등록");
 		} else if(selected == 2) {
-			System.out.println("=======================좌석가격 수정");
+			System.out.println("*************************좌석가격 수정");
 		} else if(selected ==3) {
-			System.out.println("=======================좌석삭제");
+			System.out.println("*************************좌석삭제");
 		} else if(selected == 9){
 			back();
 		} else {
-			System.out.println("없는 메뉴입니다.");
+			//System.out.println("        ߍ___ߍ          ");
+			//System.out.println("       (｡`ㅅ´｡)         ");
+			System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+			System.out.println("     없는 메뉴입니다.");
+			System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 		}
 		return selected;
 	}
 	
 
 	// 신규좌석 등록
-	private void insertSeat() {
+//	private void insertSeat() {
+//
+//		Seat seat = inputAll();
+//		if(seat != null) {
+//			System.out.println("이미 등록되어있는 좌석입니다.");
+//			return;
+//		}
+//		
+//		seatDAO.insert(seat);
+//	}
 
-		Seat seat = inputAll();
+	private void inputAll() {
+		Seat seat;
+		System.out.println("──────────────────────────────────────────────");
+		System.out.print(" 등록할 좌석 번호 -> ");
+		int seatNum = Integer.parseInt(sc.nextLine());
+		
+		seat = seatDAO.selectBySeatNum(seatNum);
+		
+		if(seat !=null) {
+			//System.out.println("        ߍ___ߍ          ");
+			//System.out.println("       (｡`ㅅ´｡)         ");
+			System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+			System.out.println("  이미 등록되어있는 좌석입니다.");
+			System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
+			return;
+		}
+		
+		seat = new Seat();
+		seat.setSeatNum(seatNum);
+		
+		System.out.print(" 좌석 가격 ➤ ");
+		int seatPrice = Integer.parseInt(sc.nextLine());
+		
+		
+		if(seatPrice <= 0) {
+			//System.out.println("        ߍ___ߍ          ");
+			//System.out.println("       (｡`ㅅ´｡)         ");
+			System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+			System.out.println("  입력할 수 없는 가격입니다.");
+			System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
+			return;
+		}
+		
+		seat.setSeatPrice(seatPrice);
+		
 		seatDAO.insert(seat);
-	}
 
-	private Seat inputAll() {
-		Seat seat = new Seat();
-		System.out.println("등록할 좌석 번호 > ");
-		seat.setSeatNum(Integer.parseInt(sc.nextLine()));
-
-		return seat;
 	}
 
 	// 좌석가격 수정
 	private void  updateSeatPrice(Seat seat) {
-
-		System.out.println("기존 좌석 가격 > " + seat.getSeatPrice());
-		System.out.println("수정할 가격 (수정하지 않을 경우 -1 입력) > ");
+		System.out.println("──────────────────────────────────────────────");
+		System.out.println(" 기존 좌석 가격 -> "+seat.getSeatPrice());
+		System.out.println("──────────────────────────────────────────────");
+		System.out.print(" 수정할 가격 (수정하지 않을 경우 -1 입력) -> ");
 
 		int price = Integer.parseInt(sc.nextLine());
 
@@ -167,7 +209,11 @@ public class SeatRentManagement extends Management {
 		Seat seat = seatDAO.selectBySeatNum(seatNum);
 		
 		if(seat == null) {
-			System.out.println("등록된 좌석이 없습니다.");
+			//System.out.println("        ߍ___ߍ          ");
+			//System.out.println("       (｡`ㅅ´｡)         ");
+			System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+			System.out.println("    등록된 좌석이 없습니다.  ");
+			System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			return;
 		} else {
 			seatDAO.delete(seat.getSeatNum());
@@ -185,7 +231,11 @@ public class SeatRentManagement extends Management {
 		Seat seat = seatDAO.selectBySeatNum(seatNum);
 
 		if (seat == null) {
-			System.out.println("등록되지 않은 좌석입니다.");
+			//System.out.println("        ߍ___ߍ          ");
+			//System.out.println("       (｡`ㅅ´｡)         ");
+			System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+			System.out.println("   등록되지 않은 좌석입니다.");
+			System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			return;
 		} 
 		
@@ -194,7 +244,11 @@ public class SeatRentManagement extends Management {
 		int rental = seat.getSeatRental();
 		
 		if(rental == 1) {
-			System.out.println("대여 중인 좌석입니다.");
+			//System.out.println("        ߍ___ߍ          ");
+			//System.out.println("       (｡`ㅅ´｡)         ");
+			System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+			System.out.println("    대여 중인 좌석입니다.");
+			System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			return;
 		} else {
 			seat.setSeatRental(1);
@@ -214,8 +268,9 @@ public class SeatRentManagement extends Management {
 		
 		rent.setSeatPrice(seat.getSeatPrice());
 		rent.setRent_price();
-		
-		System.out.println("총 대여 가격 : "+rent.getRent_price());
+		System.out.println("──────────────────────────────────────────────");
+		System.out.println(" 총 대여 가격 -> "+rent.getRent_price());
+		System.out.println();
 		rentDAO.insert(rent);
 		
 		seatDAO.updateSeatRental(seat);
@@ -225,16 +280,39 @@ public class SeatRentManagement extends Management {
 	private Rent inputHour() {
 		Rent rent = new Rent();
 
-		System.out.println("대여 희망 시간(숫자로 입력) > ");
+		System.out.println("──────────────────────────────────────────────");
+		System.out.print(" 대여 희망 시간(숫자로 입력) -> ");
 		rent.setRent_hour(Integer.parseInt(sc.nextLine()));
 		return rent;
 	}
 
 	private int inputNum() {
-		System.out.println("좌석 번호 > ");
+		System.out.println("──────────────────────────────────────────────");
+		System.out.print(" 좌석 번호 -> ");
 		return Integer.parseInt(sc.nextLine());
 	}
 
+/*	
+	//좌석 증축
+	private void addSeat() {
+		Seat seat = new Seat();
+		SeatDAO seatDAO = new SeatDAO();
+		
+		int seatNum = inputNum();
+
+		//
+		seat = seatDAO.selectBySeatNum(seatNum);
+		seatDAO.insert(seat);
+		seat.setSeatAdd(1);
+		
+		if(seat.getSeatAdd() == 1) {
+			seatDAO.seatArrangement();
+			seatDAO.addPrint(seatNum);
+			
+		}
+		
+	}
+*/	
 	// 반납
 	private void returnSeat() {
 
@@ -243,7 +321,11 @@ public class SeatRentManagement extends Management {
 		Seat seat = seatDAO.selectBySeatNum(seatNum);
 		
 		if (seat == null) {
-			System.out.println("등록되지 않은 좌석입니다.");
+			//System.out.println("        ߍ___ߍ          ");
+			//System.out.println("       (｡`ㅅ´｡)         ");
+			System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+			System.out.println("   등록되지않은 좌석입니다. ");
+			System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			return;
 		} else {
 			seat.setSeatRental(0);
@@ -271,21 +353,27 @@ public class SeatRentManagement extends Management {
 	}
 
 	private int inputSelect2() {
-		System.out.println("선택 > 1.전체 좌석 대여 내역 조회 | 2.날짜별 대여 내역 조회 | 3.좌석별 대여 내역 조회 | 9.뒤로가기");
+		System.out.println("╭────────────────────────────────────────────────────────────────────────────╮");
+		System.out.println(" 선택 -> 1.전체 좌석 대여 내역 조회 | 2.날짜별 대여 내역 조회 | 3.좌석별 대여 내역 조회 | 9.뒤로가기");
+		System.out.println("╰────────────────────────────────────────────────────────────────────────────╯");
 	
 		int selected = Integer.parseInt(sc.nextLine());
 		
 		if(selected == 1) {
-			System.out.println("=======================전체 좌석 대여 내역 조회");
+			System.out.println("*************************전체 좌석 대여 내역 조회");
 		} else if(selected == 2) {
-			System.out.println("=======================날짜별 대여 내역 조회");
+			System.out.println("*************************날짜별 대여 내역 조회");
 		} else if(selected ==3) {
-			System.out.println("=======================좌석별 대여 내역 조회");
+			System.out.println("*************************좌석별 대여 내역 조회");
 		} else if(selected == 9){
 			back();
 			
 		} else {
-			System.out.println("없는 메뉴입니다.");
+			//System.out.println("        ߍ___ߍ          ");
+			//System.out.println("       (｡`ㅅ´｡)         ");
+			System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+			System.out.println("      없는 메뉴입니다. ");
+			System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 		}
 		return selected;
 		
@@ -304,7 +392,11 @@ public class SeatRentManagement extends Management {
 		} else if(choice == 3) {
 			seatNumRentStatus();
 		} else {
-			System.out.println("올바른 형식으로 입력해주세요.");
+			//System.out.println("        ߍ___ߍ          ");
+			//System.out.println("       (｡`ㅅ´｡)         ");
+			System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+			System.out.println("  올바른 형식으로 입력해주세요. ");
+			System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 		}
 		for(Rent rent : list) {
 			System.out.println(rent);
@@ -328,7 +420,8 @@ public class SeatRentManagement extends Management {
 
 	// 날짜별 대여내역 조회
 	private void dateRentStatus() {
-		System.out.println("날짜를 입력하세요. (YYYY-MM-DD)>");
+		System.out.println("──────────────────────────────────────────────");
+		System.out.print(" 날짜를 입력하세요. (YYYY-MM-DD) -> ");
 		String date = sc.nextLine();
 		
 		List<Rent> list = rentDAO.selectAllRentDate(date);
@@ -363,7 +456,8 @@ public class SeatRentManagement extends Management {
 	}
 
 	private String inputId() {
-		System.out.println("회원 아이디 > ");
+		System.out.println("──────────────────────────────────────────────");
+		System.out.print(" 회원 아이디 -> ");
 		return sc.nextLine();
 	}
 
@@ -380,7 +474,8 @@ public class SeatRentManagement extends Management {
 		// 첫번째값이 임시변수에 담겨서 for안의 실행블록 실행 -> 그다음 두번째....반복
 		for (Seat seat : list) {
 			// 그 값을 출력
-			System.out.println("현재 대여 가능 좌석 ▶▶ " + seat);
+			System.out.println("──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────");
+			System.out.println("현재 대여 가능 좌석 >> " + seat);
 		}
 	}
 

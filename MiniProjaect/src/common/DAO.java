@@ -13,10 +13,10 @@ import java.util.Properties;
 public class DAO {
 
 	//Oracle DB 정보
-	private String jdbcDriver;
-	private String oracleUrl;
-	private String connectedId;
-	private String connectedPwd;
+	private String jdbcDriver = "oracle.jdbc.driver.OracleDriver";
+	private String oracleUrl= "jdbc:oracle:thin:@localhost:1521:xe";
+	private String connectedId= "kbb";
+	private String connectedPwd = "kbb";
 	
 	//모든 자식 클래스에서 공통으로 사용할 필드
 	protected Connection conn;
@@ -25,7 +25,7 @@ public class DAO {
 	protected ResultSet rs;
 	
 	public DAO() {
-		dbConfig();
+		//dbConfig();
 	}	//한번만 실행시키고자한다면 생성자 안에서 디비컨피그 해줘도됨 
 	
 	//DB에 접속하는 메소드
@@ -45,7 +45,7 @@ public class DAO {
 		
 	}
 	
-	
+/*	
 	//DB 정보를 가져오는 메소드 -> 원래는 접속,해제 메소드 두개만 있으면 되는데 -> properties 파일로 관리하기때문에 필요한 것
 	private void dbConfig() {
 		String resource = "config/db.properties";
@@ -62,7 +62,7 @@ public class DAO {
 		connectedId = properties.getProperty("id");
 		connectedPwd = properties.getProperty("password");
 	}
-
+*/
 	//DB 접속을 해제하는 메소드
 	public void disconnect() {
 		try {

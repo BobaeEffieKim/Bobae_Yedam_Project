@@ -16,7 +16,6 @@ public class Rent {
 	
 	
 	
-	
 	public String getMemberId() {
 		return memberId;
 	}
@@ -135,8 +134,10 @@ public class Rent {
 
 	@Override
 	public String toString() {
-		return "회원 id : " + memberId + " , 좌석 번호 : " + seatNum + " , 좌석 가격 : "+ seatPrice +" , 대여 날짜 : " + rent_date + " , 대여 시간 : " +rent_hour+"시간"
-				+" , 총 대여 비용 : " + rent_price + ", 반납 시간 : "+ return_time ;
+	
+		
+		return "회원 id : " + String.format("%-10s", memberId) + " | 좌석 번호 : " + String.format("%-5s", seatNum) + " | 좌석 가격 : "+ String.format("%-7s", seatPrice) +" | 대여 날짜 : " + String.format("%-25s", rent_date) + " | 대여 시간 : " +String.format("%-3s", rent_hour)+"시간"
+				+" | 총 대여 비용 : " + String.format("%-7s", rent_price) + "| 반납 시간 : "+ String.format("%-25s", return_time) ;
 	}
 	
 	

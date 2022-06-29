@@ -27,7 +27,7 @@ public class MemberManagement extends Management {
 			} else if (menuNo == 2 && role) {
 				selectAll();
 
-			} else if (menuNo == 3 && role) {
+			} else if (menuNo == 3 ) {
 				deleteMember();
 
 			} else if (menuNo == 4) {
@@ -50,21 +50,25 @@ public class MemberManagement extends Management {
 
 		if (role) {
 
-			menu += "1.회원정보 조회  " + "2.전체회원 조회  " + "3.회원 삭제  ";
+			menu += " 1.회원정보 조회  " + "2.전체회원 조회  ";
 
 		}
 
-		menu += "4.회원정보 수정  " + "9.뒤로가기";
+		menu += " 3.회원계정 삭제  "  +  "4.회원정보 수정  " + "9.뒤로가기";
 
 		System.out.println();
-		System.out.println("====================================================================");
+		System.out.println("───────────────────────────────────────────────────────────────");
 		System.out.println(menu);
-		System.out.println("====================================================================");
+		System.out.println("───────────────────────────────────────────────────────────────");
 		System.out.println();
 	}
 
 	private void back() {
-		System.out.println("메인으로 돌아갑니다.");
+		//System.out.println("         ߍ__ߍ          ");
+		//System.out.println("        (｡･◡･｡)         ");
+		System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+		System.out.println("     메인으로 돌아갑니다.    ");
+		System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 	}
 
 	private void deleteMember() {
@@ -76,7 +80,11 @@ public class MemberManagement extends Management {
 		List<Rent> list = rentDAO.selectOneMemberId(memberId);
 			for(Rent rent : list) {
 				if(rent.getReturn_time() == null) {
-					System.out.println("대여중인 좌석이 있습니다.");
+					//System.out.println("                ߍ___ߍ                  ");
+					//System.out.println("               (｡`ㅅ´｡)                 ");
+					System.out.println("┏━━━━━━━━━━━━━━━O━━━O━━━━━━━━━━━━━━━━━┓");
+					System.out.println(" 대여 중인 좌석이 있습니다. 먼저 좌석을 반납해주세요.");
+					System.out.println("┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛");
 					
 					return;
 				} 
@@ -84,7 +92,11 @@ public class MemberManagement extends Management {
 		}
 		
 		if (member == null) {
-			System.out.println("등록된 정보가 없습니다.");
+			//System.out.println("        ߍ___ߍ          ");
+			//System.out.println("       (｡`ㅅ´｡)         ");
+			System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+			System.out.println("   등록된 정보가 없습니다.    ");
+			System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			return;
 		}
 
@@ -95,8 +107,15 @@ public class MemberManagement extends Management {
 		if (isSelected != null) {
 
 			int deleteCheck = 0;
-			System.out.println("정말 삭제하시겠습니까?");
-			System.out.println("1. 예, 삭제하겠습니다.  | 2. 아니오, 메인으로 돌아가겠습니다.");
+			//System.out.println("         ߍ__ߍ          ");
+			//System.out.println("        (ㅠ-ㅠ)         ");
+			System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+			System.out.println(" 정말 계정을 삭제하시겠습니까?  ");
+			System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
+			
+			System.out.println("──────────────────────────────────────────────");
+			System.out.println(" 1. 예, 삭제하겠습니다.  | 2. 아니오, 메인으로 돌아가겠습니다.");
+			System.out.println("──────────────────────────────────────────────");
 
 			deleteCheck = Integer.parseInt(sc.nextLine());
 
@@ -106,21 +125,30 @@ public class MemberManagement extends Management {
 			} else if (deleteCheck == 2) {
 				back();
 			} else {
-				System.out.println("잘못 입력된 형식입니다.");
+				//System.out.println("        ߍ___ߍ          ");
+				//System.out.println("       (｡`ㅅ´｡)         ");
+				System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+				System.out.println("   잘못 입력된 형식입니다.   ");
+				System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			}
 		}
 	}
 
 	private String inputId() {
-		System.out.println("회원 id > ");
+		System.out.println("──────────────────────────────────────────────");
+		System.out.print(" 회원 아이디 -> ");
 		return sc.nextLine();
 	}
 
 	private void updateMember() {
 
 		int updateMenu = 0;
-		System.out.println("수정 항목 선택 > ");
-		System.out.println("1.phone number  |  2.password");
+		System.out.println("──────────────────────────────────────────────");
+		System.out.print(" 수정 항목 번호 선택 -> ");
+		System.out.println();
+		System.out.println("─────────────────────────────");
+		System.out.println(" 1.phone number  |  2.password");
+		System.out.println("─────────────────────────────");
 		updateMenu = Integer.parseInt(sc.nextLine());
 
 		if (updateMenu == 1) {
@@ -128,7 +156,11 @@ public class MemberManagement extends Management {
 		} else if (updateMenu == 2) {
 			updatePwd();
 		} else {
-			System.out.println("잘못 입력된 형식입니다.");
+			//System.out.println("        ߍ___ߍ          ");
+			//System.out.println("       (｡`ㅅ´｡)         ");
+			System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+			System.out.println("   잘못 입력된 형식입니다.   ");
+			System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 		}
 	}
 
@@ -139,7 +171,11 @@ public class MemberManagement extends Management {
 		Member member = memberDAO.selectOneById(memberId);
 
 		if (member == null) {
-			System.out.println("등록된 정보가 없습니다.");
+			//System.out.println("        ߍ___ߍ          ");
+			//System.out.println("       (｡`ㅅ´｡)         ");
+			System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+			System.out.println("    등록된 정보가 없습니다.   ");
+			System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			return;
 		}
 
@@ -150,9 +186,11 @@ public class MemberManagement extends Management {
 	}
 
 	private Member inputUpdatePhone(Member member) {
-
-		System.out.println("기존 전화번호 > " + member.getMemberPhone());
-		System.out.println("수정할 전화번호(수정하지 않을 경우 0 입력) > ");
+		System.out.println("──────────────────────────────────────────────");
+		System.out.print(" 기존 전화번호 -> "+ member.getMemberPhone());
+		System.out.println();
+		System.out.println("──────────────────────────────────────────────");
+		System.out.println(" 수정할 전화번호(수정하지 않을 경우 0 입력) -> ");
 
 		// members 테이블의 데이터타입을 문자로 바꿔주고 진행하기!!!!
 		// 현재 관리자 계정도 삭제되어있는 상태!
@@ -172,7 +210,11 @@ public class MemberManagement extends Management {
 		Member member = memberDAO.selectOneById(memberId);
 
 		if (member == null) {
-			System.out.println("등록된 정보가 없습니다.");
+			//System.out.println("        ߍ___ߍ          ");
+			//System.out.println("       (｡`ㅅ´｡)         ");
+			System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+			System.out.println("    등록된 정보가 없습니다.   ");
+			System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			return;
 		}
 		
@@ -188,18 +230,24 @@ public class MemberManagement extends Management {
 //
 //			member.setMemberPwd(sc.nextLine());
 
-			System.out.println("비밀번호 재입력 > ");
+			System.out.println("──────────────────────────────────────────────");
+			System.out.println(" 비밀번호 재입력 -> ");
 			String pwdCheck = sc.nextLine();
 			//System.out.println(member.getMemberPwd());
 			if (!pwdCheck.equals(member.getMemberPwd())) {
-				System.out.println("비밀번호가 일치하지 않습니다. \n비밀번호를 다시 입력해주세요.");
+				
+				//System.out.println("        ߍ___ߍ          ");
+				//System.out.println("       (｡`ㅅ´｡)         ");
+				System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+				System.out.println("  비밀번호가 일치하지 않습니다. \n  비밀번호를 다시 입력해주세요.   ");
+				System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 			} else {
 				break;
 			}
 		}
 
-		System.out.println("수정할 비밀번호(수정하지 않을 경우 0 입력) > ");
-
+		System.out.println("──────────────────────────────────────────────");
+		System.out.println(" 수정할 비밀번호(수정하지 않을 경우 0 입력) -> ");
 		// members 테이블의 데이터타입을 문자로 바꿔주고 진행하기!!!!
 		// 현재 관리자 계정도 삭제되어있는 상태!
 		String pwd = sc.nextLine();
@@ -219,7 +267,11 @@ public class MemberManagement extends Management {
 
 		if (member == null) {
 
-			System.out.println("등록된 회원이 아닙니다.");
+			//System.out.println("        ߍ___ߍ          ");
+			//System.out.println("       (｡`ㅅ´｡)         ");
+			System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
+			System.out.println("    등록된 회원이 아닙니다.   ");
+			System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 
 			return;
 		}

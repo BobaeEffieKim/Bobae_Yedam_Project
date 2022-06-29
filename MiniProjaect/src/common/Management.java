@@ -41,9 +41,9 @@ public class Management {
 
 	protected void menuPrint() {
 		System.out.println();
-		System.out.println("╭──────────────────────────────────────╮");
+		System.out.println("──────────────────────────────────────");
 		System.out.println("  1.회원 관리  2.좌석 및 좌석대여 관리  9.종료");
-		System.out.println("╰──────────────────────────────────────╯");
+		System.out.println("──────────────────────────────────────");
 		System.out.println();
 	}
 	
@@ -55,8 +55,8 @@ public class Management {
 		try {
 			menuNo = Integer.parseInt(sc.nextLine());
 		} catch(NumberFormatException e) {
-			System.out.println("        ߍ___ߍ          ");
-			System.out.println("       (｡`ㅅ´｡)         ");
+			//System.out.println("        ߍ___ߍ          ");
+			//System.out.println("       (｡`ㅅ´｡)         ");
 			System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
 			System.out.println(" 숫자 형식으로 입력해주세요. ");
 			System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
@@ -65,16 +65,16 @@ public class Management {
 	}
 	
 	protected void exit() {
-		System.out.println("        ߍ___ߍ          ");
-		System.out.println("       (｡･◡･｡)         ");
+		//System.out.println("        ߍ__ߍ          ");
+		//System.out.println("       (｡･◡･｡)         ");
 		System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
 		System.out.println("    프로그램을 종료합니다.  ");
 		System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");
 	}
 	
 	protected void showInputError() {
-		System.out.println("        ߍ___ߍ          ");
-		System.out.println("       (｡`ㅅ´｡)         ");
+		//System.out.println("        ߍ___ߍ          ");
+		//System.out.println("       (｡`ㅅ´｡)         ");
 		System.out.println("┏━━━━━━━O━━━O━━━━━━━━━┓");
 		System.out.println(" 메뉴를 참고하여 입력해주세요. ");
 		System.out.println("┗━━━━━━━━━━━━━━━━━━━━━┛");

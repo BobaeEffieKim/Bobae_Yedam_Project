@@ -10,6 +10,10 @@ public class Member {
 	//memberRole 0 : 관리자, 1 : 일반사원 
 	private int memberRole;
 	
+
+	
+	
+	
 	
 	public int getMemberNum() {
 		return memberNum;
@@ -52,6 +56,8 @@ public class Member {
 	
 	@Override
 	public String toString() {
+	
+		
 		String info = "";
 		if(memberRole == 0) {
 			info = "관리자 계정 : " + memberId;
@@ -59,7 +65,10 @@ public class Member {
 			info = "일반 계정 : " + memberId +"\n(이름 ▶▶ " + memberName
 					+ ", 전화번호 ▶▶ "+memberPhone+")\n";
 		}
-		return info;
+		return info ;
+		
+
+		
 	}
 	
 }
